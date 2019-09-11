@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .column {
-  height: 70vh;
+  min-height: 100vh;
   background-color: rgb(228, 228, 228);
   border-color: rgb(109, 109, 109);
   border-style: solid;
