@@ -1,5 +1,11 @@
 <template>
-  <div class="todo-item" :class="{ 'selected':selected }" v-on:click="select">
+  <div
+    class="todo-item"
+    :class="{ 'selected':selected }"
+    v-on:click="select"
+    draggable="true"
+    v-on:dragstart="dragstart($event)"
+  >
     <h3>{{ todo.title }}</h3>
     <p>{{ todo.body }}</p>
     <div>
@@ -30,6 +36,11 @@ export default {
     },
     promote: function() {
       this.todo.state = next[this.todo.state];
+    },
+    dragstart: function(e) {
+      console.log("drag start");
+      e.target.style.opacity = 1.0;
+      e.dataTransfer.setData("todoId", this.todo.id);
     }
   },
   computed: {
@@ -53,7 +64,13 @@ export default {
 h3 {
   margin: 0px;
 }
-.selected {
-  background: rgb(53, 211, 150);
+.todo-item:hover {
+  background: rgb(221, 255, 242);
+}
+.todo-item.selected {
+  background: rgb(120, 223, 183);
+}
+.todo-item:hover.selected {
+  background: rgb(130, 241, 199);
 }
 </style>

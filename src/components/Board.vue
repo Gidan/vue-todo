@@ -11,21 +11,27 @@
           class="left"
           :todos="todoList"
           :selectedId="selectedId"
+          :columnState="'todo'"
           v-on:update:selectedId="select"
           v-on:deleteTodo="deleteTodo"
+          v-on:changeState="changeState"
         />
         <column
           :todos="inProgressList"
           :selectedId="selectedId"
+          :columnState="'inProgress'"
           v-on:update:selectedId="select"
           v-on:deleteTodo="deleteTodo"
+          v-on:changeState="changeState"
         />
         <column
           class="right"
           :todos="doneList"
           :selectedId="selectedId"
+          :columnState="'done'"
           v-on:update:selectedId="select"
           v-on:deleteTodo="deleteTodo"
+          v-on:changeState="changeState"
         />
       </div>
     </div>
@@ -82,6 +88,15 @@ export default {
         }
         index++;
       }
+    },
+    changeState: function(strId, state) {
+      let id = parseInt(strId);
+      this.todos
+        .filter(todo => todo.id === id)
+        .forEach(todo => {
+          console.log(`changin state of ${id} to ${state}`);
+          todo.state = state;
+        });
     }
   },
   computed: {

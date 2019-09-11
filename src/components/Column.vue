@@ -1,5 +1,10 @@
 <template>
-  <div class="col-sm column">
+  <div
+    class="col-sm column"
+    v-on:drop="drop($event)"
+    v-on:dragover="allowDrop($event)"
+    v-on:dragenter="dragenter"
+  >
     <TodoItem
       v-for="todo in todos"
       :key="todo.id"
@@ -16,13 +21,25 @@ import TodoItem from "./TodoItem.vue";
 export default {
   name: "column",
   components: { TodoItem },
-  props: ["todos", "selectedId"],
+  props: ["todos", "selectedId", "columnState"],
   methods: {
     select: function(id) {
       this.$emit("update:selectedId", id);
     },
     deleteTodo: function(id) {
       this.$emit("deleteTodo", id);
+    },
+    drop: function(ev) {
+      event.preventDefault();
+      let todoId = event.dataTransfer.getData("todoId");
+      console.log("drop on column " + todoId);
+      this.$emit("changeState", todoId, this.columnState);
+    },
+    allowDrop: function(ev) {
+      event.preventDefault();
+    },
+    dragenter: function(ev) {
+      console.log("drag enter column");
     }
   }
 };
