@@ -60,13 +60,13 @@ export default {
         },
         {
           id: 1,
-          title: "inprogress1",
+          title: "todo2",
           body: "in progress1 body",
           state: STATE_IN_PROGRESS
         },
         {
           id: 2,
-          title: "done1",
+          title: "todo3",
           body:
             "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.",
           state: STATE_DONE
@@ -77,6 +77,15 @@ export default {
   methods: {
     select: function(id) {
       this.selectedId = id;
+    },
+    addTodo: function(title, body) {
+      console.log(`board adding ${title} ${body}`);
+      this.todos.push({
+        id: this.todos.length + 1,
+        title: title,
+        body: body,
+        state: STATE_TODO
+      });
     },
     deleteTodo: function(id) {
       let index = 0;
