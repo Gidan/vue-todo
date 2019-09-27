@@ -1,18 +1,16 @@
 <template>
   <section class="new-task-form">
     <H2>NEW TODO</H2>
-    <button class="close-button" v-on:click="close">close</button>
-
-    <div class="field">
+    <button class="close-button btn btn-secondary" v-on:click="close">close</button>
+    <div class="form-group">
       <label for="title">Title:</label>
-      <input id="title" type="text" v-model="title" />
+      <input id="title" type="text" v-model="title" class="form-control" />
     </div>
-    <div class="field">
+    <div class="form-group">
       <label for="body">Body:</label>
-      <input id="body" type="text" v-model="body" />
+      <input id="body" type="text" v-model="body" class="form-control" />
     </div>
-
-    <button v-on:click="save">save</button>
+    <button v-on:click="save" class="btn btn-primary">save</button>
   </section>
 </template>
 
@@ -41,21 +39,13 @@ export default {
 .new-task-form {
   background: white;
   padding: 20px;
-  border: 1px;
-  border-color: black;
-  border-style: solid;
   width: 50%;
   position: fixed; /* or absolute */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.field label {
-  width: 20%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: left;
-}
-.field input {
-  width: 80%;
 }
 .close-button {
   position: absolute;
