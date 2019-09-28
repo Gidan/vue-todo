@@ -2,5 +2,5 @@
 
 Example of Todo list application made with Vue.JS
 
-![Board](vue-todo-s1.png)
-![New task](vue-todo-s2.png)
+![Board](vue-todo-s2.png)
+![New task](vue-todo-s1.png)
